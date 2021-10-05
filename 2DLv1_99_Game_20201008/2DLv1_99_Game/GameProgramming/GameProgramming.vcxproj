@@ -93,6 +93,7 @@
     <ClCompile Include="CSceneTitle.cpp" />
     <ClCompile Include="CText.cpp" />
     <ClCompile Include="CTexture.cpp" />
+    <ClCompile Include="include\glut.cpp" />
     <ClCompile Include="Update.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
