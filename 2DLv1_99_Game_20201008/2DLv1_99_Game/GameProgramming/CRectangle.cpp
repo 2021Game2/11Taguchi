@@ -11,6 +11,7 @@ std::vector<CRectangle*> VectorRect;
 CRectangle::CRectangle()
 : mTag(EBLOCK)	//初期値ブロック
 , mStatus(EDISABLED)
+, x(0),y(0),w(0),h(0),mEnabled(0)
 {
 	/*
 	可変長配列に自身のポインタを追加する
@@ -18,6 +19,7 @@ CRectangle::CRectangle()
 	値を配列の最後に追加する
 	*/
 	VectorRect.push_back(this);
+	
 }
 
 

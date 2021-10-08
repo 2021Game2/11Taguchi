@@ -24,18 +24,18 @@ void CSceneGame::Init() {
 	Player->h = 25;
 	Player->mEnabled = true;
 
-	int map[6][8] =
+	int map[6][30] =
 	{
-		{ 1, 1, 1, 1, 1, 1, 1, 1 },
-		{ 1, 0, 1, 0, 0, 0, 1, 1 },
-		{ 1, 2, 0, 0, 1, 0, 0, 1 },
-		{ 1, 0, 1, 2, 0, 0, 1, 1 },
-		{ 1, 0, 0, 0, 1, 2, 0, 1 },
-		{ 1, 1, 1, 1, 1, 1, 1, 1 },
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0},
+		{ 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1},
+		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1},
 	};
 
 	for (int j = 0; j < 6; j++) {
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 30; i++) {
 			//mapの要素が1の時、四角形配置
 			if (map[j][i] == 1) {
 				CMap *Map = new CMap();
@@ -100,6 +100,21 @@ void CSceneGame::Update() {
 		}
 	}
 
+	//描画範囲変数の作成　範囲下：-300　範囲上：300　固定
+	double mLeft, mRight, mBottom = -300.0, mTop = 300.0;
+	//画面範囲左の設定
+	mLeft = CPlayer::spInstance->x - 400.0;
+	//画面範囲右の設定
+	mRight = mLeft + 800.0f;
+	//画面投影範囲の変更
+	//行列をプロジェクションモードへ変更
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();	//行列を初期化
+	//2Dの画面を設定
+	gluOrtho2D(mLeft, mRight, mBottom, mTop);
+	//行列をモデルビューモードへ変更
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();	//行列を初期化
 	for (int i = 0; i < VectorRect.size(); i++) {
 		//描画処理
 		VectorRect[i]->Render();

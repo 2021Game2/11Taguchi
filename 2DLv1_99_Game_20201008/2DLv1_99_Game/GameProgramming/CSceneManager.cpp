@@ -5,6 +5,7 @@
 //コンストラクタ
 CSceneManager::CSceneManager()
 : mpScene(0)
+
 {}
 //デストラクタ（削除されるときに実行されます）
 CSceneManager::~CSceneManager() {
