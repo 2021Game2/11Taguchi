@@ -8,7 +8,7 @@ extern CTexture Texture;
 CPlayer* CPlayer::spInstance;
 
 #define G	1	//重力
-#define VJ0	40	//ジャンプ力
+#define VJ0	30	//ジャンプ力
 #define ANICNT 40		//アニメーションの切り替え
 
 CPlayer::CPlayer()
@@ -39,22 +39,22 @@ void CPlayer::Update() {
 			x = 400 - w;
 		}*/
 	}
-	if (CKey::Push('W')) {
-		y += 3;
-		mFx = 0;
-		mFy = 1;
-		if (y + h > 300) {
-			y = 300 - h;
-		}
-	}
-	if (CKey::Push('S')) {
-		y -= 3;
-		mFx = 0;
-		mFy = -1;
-		if (y - h < -300) {
-			y = -300 + h;
-		}
-	}
+	///*if (CKey::Push('W')) {
+	//	y += 3;
+	//	mFx = 0;
+	//	mFy = 1;
+	//	if (y + h > 300) {
+	//		y = 300 - h;
+	//	}
+	//}
+	//if (CKey::Push('S')) {
+	//	y -= 3;
+	//	mFx = 0;
+	//	mFy = -1;
+	//	if (y - h < -300) {
+	//		y = -300 + h;
+	//	}*/
+	//}
 
 	//ジャンプ可能か
 	if (mJump == 0 && CKey::Push(' ')) {

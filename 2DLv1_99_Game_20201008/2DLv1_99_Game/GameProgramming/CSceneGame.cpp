@@ -24,18 +24,18 @@ void CSceneGame::Init() {
 	Player->h = 25;
 	Player->mEnabled = true;
 
-	int map[6][30] =
+	int map[6][50] =
 	{
-		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0},
-		{ 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1},
-		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1},
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,0, 0, 0, 0, 0, 0, 1, 1, 1},
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
+		{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1},
+		{ 1, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,1, 1, 1},
+		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 0, 1, 1, 1, 1, 1, 1, 1, 1},
 	};
 
 	for (int j = 0; j < 6; j++) {
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 50; i++) {
 			//mapの要素が1の時、四角形配置
 			if (map[j][i] == 1) {
 				CMap *Map = new CMap();
@@ -54,6 +54,9 @@ void CSceneGame::Init() {
 				Enemy->mFx = 0;
 				Enemy->mFy = 1;
 			}
+			else if (map[j][i] == 3) {
+
+			}
 		}
 	}
 }
@@ -64,7 +67,7 @@ void CSceneGame::Update() {
 	配列名.size()
 	配列の要素数を取得する
 	*/
-	for (int i = 0; i < VectorRect.size(); i++) {
+	for (size_t i = 0; i < VectorRect.size(); i++) {
 		/*
 		配列の参照
 		配列名[添え字]
@@ -73,9 +76,9 @@ void CSceneGame::Update() {
 		//更新処理
 		VectorRect[i]->Update();
 	}
-	for (int i = 0; i < VectorRect.size() - 1; i++) {
+	for (size_t i = 0; i < VectorRect.size() ; i++) {
 		//衝突処理
-		for (int j = i + 1; j < VectorRect.size(); j++) {
+		for (size_t j = i + 1; j < VectorRect.size(); j++) {
 			VectorRect[i]->Collision(VectorRect[i], VectorRect[j]);
 			VectorRect[j]->Collision(VectorRect[j], VectorRect[i]);
 		}
@@ -115,7 +118,7 @@ void CSceneGame::Update() {
 	//行列をモデルビューモードへ変更
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();	//行列を初期化
-	for (int i = 0; i < VectorRect.size(); i++) {
+	for (size_t i = 0; i < VectorRect.size(); i++) {
 		//描画処理
 		VectorRect[i]->Render();
 	}
@@ -129,7 +132,7 @@ CScene::EScene CSceneGame::GetNextScene() {
 //デストラクタ
 CSceneGame::~CSceneGame() {
 	//全てのインスタンスを削除します
-	for (int i = 0; i < VectorRect.size(); i++) {
+	for (size_t i = 0; i < VectorRect.size(); i++) {
 		//インスタンスの削除
 		delete VectorRect[i];
 	}
