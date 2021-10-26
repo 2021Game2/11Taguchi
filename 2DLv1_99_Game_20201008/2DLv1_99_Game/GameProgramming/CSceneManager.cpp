@@ -16,6 +16,7 @@ CSceneManager::~CSceneManager() {
 	mpScene = 0;
 }
 //‰Šú‰»ˆ—
+
 void CSceneManager::Init() {
 	//ƒV[ƒ“‚Ì¯•Ê‚ğİ’è‚·‚é
 	mScene = CScene::ETITLE;

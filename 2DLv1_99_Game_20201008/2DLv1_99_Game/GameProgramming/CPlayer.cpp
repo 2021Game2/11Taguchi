@@ -57,7 +57,7 @@ void CPlayer::Update() {
 	//}
 
 	//ジャンプ可能か
-	if (mJump == 0 && CKey::Push(' ')) {
+	if (mJump == 0 && CKey::Once(' ')) {
 		//ジャンプ力を速度に設定
 		mVj = VJ0;
 		//フラグに1加算
