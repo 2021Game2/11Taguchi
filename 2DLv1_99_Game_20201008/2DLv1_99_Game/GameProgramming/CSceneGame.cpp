@@ -9,6 +9,8 @@
 #include "CText.h"
 #include "CSlidingfloor.h"
 
+int Time = 60 * 80;
+
 void CSceneGame::Init() {
 	//ÉVÅ[ÉìÇÃê›íË
 	mScene = EGAME;
@@ -128,6 +130,19 @@ void CSceneGame::Update() {
 	for (size_t i = 0; i < VectorRect.size(); i++) {
 		//ï`âÊèàóù
 		VectorRect[i]->Render();
+
+		
+
+		/*char buf[10];
+		sprintf(buf, "%d", Time / 60);
+		CText::DrawString(buf, 320, -50, 16, 16);
+
+		CText::DrawString("Time", 170, -50, 16, 16);
+		if (Time > 0) {
+			Time--;
+		}*/
+
+		
 	}
 }
 
