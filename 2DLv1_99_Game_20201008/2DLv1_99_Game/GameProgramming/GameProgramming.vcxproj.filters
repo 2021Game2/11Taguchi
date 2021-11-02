@@ -51,9 +51,6 @@
     <ClCompile Include="CTexture.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="include\glut.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="CSlidingfloor.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>

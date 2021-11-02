@@ -4,17 +4,20 @@
 extern CTexture Texture;
 
 CEnemy::CEnemy()
-: mFx(1.0f), mFy(0.0f), mFireCount(60)
+: mFx(1.0f), mFy(0.0f)
 {
 	mTag = EENEMY;
 	w = 25;
 	h = 25;
+	mEnabled = true;
 }
 
-void CEnemy::Update() {	
+
+void CEnemy::Update() {
 	x += mFx;
 	y += mFy;
 }
+
 /*
 親のCollisionをオーバーライドする
 衝突すると移動方向を反対にする
@@ -29,14 +32,10 @@ bool CEnemy::Collision(const CRectangle &r) {
 			mFx *= -1;
 			mFy *= -1;
 			break;
-
-		case EPLAYER:
-			mEnabled = false;
-			break;
 		}
 		return true;
 	}
-	return false;
+	/*return false;*/
 }
 
 void CEnemy::Render() {
