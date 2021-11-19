@@ -7,6 +7,9 @@ extern CTexture Texture;
 
 CPlayer* CPlayer::spInstance;
 
+int CPlayer::Gameclear = 0;
+int CPlayer::Gameover = 0;
+
 #define G	1	//重力
 #define VJ0	30	//ジャンプ力
 #define ANICNT 40		//アニメーションの切り替え

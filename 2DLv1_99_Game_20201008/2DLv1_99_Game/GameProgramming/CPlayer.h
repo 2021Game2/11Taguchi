@@ -10,6 +10,8 @@ public:
 	int mJump; //ジャンプフラグ
 	int mVj;  //ジャンプ用速度
 	int mAniCnt;	//アニメーション用カウンタ
+	static int Gameover;
+	static int Gameclear;
 	static CPlayer* spInstance;
 	CPlayer();
 	void Update();

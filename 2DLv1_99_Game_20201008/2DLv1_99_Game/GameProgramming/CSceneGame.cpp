@@ -9,7 +9,7 @@
 #include "CText.h"
 #include "CSlidingfloor.h"
 
-int Time = 60 * 160;
+int Time = 60 * 10;
 
 void CSceneGame::Init() {
 	//ÉVÅ[ÉìÇÃê›íË
@@ -160,6 +160,10 @@ void CSceneGame::Update() {
 			Time--;
 		}
 
+		if (Time == 0) {
+			CText::DrawString("GAME OVER", -250, 0, 32, 32);
+			CPlayer::Gameover = 0;
+		}
 		
 	
 }
