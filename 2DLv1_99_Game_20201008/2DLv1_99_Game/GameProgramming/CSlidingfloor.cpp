@@ -1,10 +1,10 @@
 #include "CSlidingfloor.h"
 
 CSlidingfloor::CSlidingfloor()
-	:inertia()
+	:inertia(0)
 {
-
 }
+
 
 
 

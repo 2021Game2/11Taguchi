@@ -9,7 +9,7 @@
 #include "CText.h"
 #include "CSlidingfloor.h"
 
-int Time = 60 * 80;
+int Time = 60 * 160;
 
 void CSceneGame::Init() {
 	//シーンの設定
@@ -124,6 +124,7 @@ void CSceneGame::Update() {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();	//行列を初期化
 	//2Dの画面を設定
+
 	gluOrtho2D(mLeft, mRight, mBottom, mTop);
 	//行列をモデルビューモードへ変更
 	glMatrixMode(GL_MODELVIEW);
@@ -131,20 +132,36 @@ void CSceneGame::Update() {
 	for (size_t i = 0; i < VectorRect.size(); i++) {
 		//描画処理
 		VectorRect[i]->Render();
+	}
+
+		for (int i = 0; i < VectorRect.size(); i++) {
+			//	描画処理
+			VectorRect[i]->Render();
+		}
+
+		//画面投影範囲の変更
+		//行列をプロジェクションモードに変更
+			glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();   ////行列を初期化
+		//2Dの画面を設定
+		gluOrtho2D(-600, 600, -300, 300);
+		//行列をモデルビューモードへ変更
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();    ////行列を初期化
 
 		
 
-		/*char buf[10];
+		char buf[10];
 		sprintf(buf, "%d", Time / 60);
-		CText::DrawString(buf, 320, -50, 16, 16);
+		CText::DrawString(buf, 470, 250, 16, 16);
 
-		CText::DrawString("Time", 170, -50, 16, 16);
+		CText::DrawString("Time", 330, 250, 16, 16);
 		if (Time > 0) {
 			Time--;
-		}*/
+		}
 
 		
-	}
+	
 }
 
 
