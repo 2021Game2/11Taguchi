@@ -98,5 +98,8 @@
     <ClInclude Include="CSlidingfloor.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="CGoalflag.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

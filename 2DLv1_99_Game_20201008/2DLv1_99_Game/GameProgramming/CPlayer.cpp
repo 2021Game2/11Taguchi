@@ -1,6 +1,7 @@
 #include "CPlayer.h"
 #include "CKey.h"
 #include "CBullet.h"
+#include "CGoalflag.h"
 
 //extern：他のソースファイルの外部変数にアクセスする宣言
 extern CTexture Texture;
@@ -10,8 +11,8 @@ CPlayer* CPlayer::spInstance;
 int CPlayer::Gameclear = 0;
 int CPlayer::Gameover = 0;
 
-#define G	1	//重力
-#define VJ0	30	//ジャンプ力
+#define G	0.5f    //重力
+#define VJ0	18	 //ジャンプ力
 #define ANICNT 40		//アニメーションの切り替え
 
 CPlayer::CPlayer()
@@ -138,4 +139,5 @@ void CPlayer::Collision(CRectangle *ri, CRectangle *ry) {
 			}
 		}
 	}
+	
 }

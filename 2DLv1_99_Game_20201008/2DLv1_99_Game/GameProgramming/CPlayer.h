@@ -8,7 +8,7 @@ public:
 	int mFx, mFy;
 	int FireCount;
 	int mJump; //ジャンプフラグ
-	int mVj;  //ジャンプ用速度
+	float  mVj;  //ジャンプ用速度
 	int mAniCnt;	//アニメーション用カウンタ
 	static int Gameover;
 	static int Gameclear;

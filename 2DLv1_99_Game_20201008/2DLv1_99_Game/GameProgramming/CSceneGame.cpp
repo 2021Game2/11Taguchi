@@ -8,8 +8,9 @@
 #include "CEnemy.h"
 #include "CText.h"
 #include "CSlidingfloor.h"
+#include "CGoalflag.h"
 
-int Time = 60 * 10;
+int Time = 60 * 45;
 
 void CSceneGame::Init() {
 	//シーンの設定
@@ -33,7 +34,7 @@ void CSceneGame::Init() {
 		{ 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1},
 		{ 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1},
 		{ 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1},
-		{ 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,0 ,1, 1, 1, 1},
+		{ 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,4 ,1, 1, 1, 1},
 		{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 3, 3, 3, 3, 3, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 	};
 
@@ -66,6 +67,15 @@ void CSceneGame::Init() {
 				Slidingfloor->w = 50;
 				Slidingfloor->h = 50;
 
+			}
+			else if (map[j][i] == 4) {
+				CGoalflag* Goalflag = new CGoalflag();
+				Goalflag->mEnabled = true;
+				Goalflag->x = i * 100 - 350;
+				Goalflag->y = j * -100 + 250;
+				Goalflag->w = 25;
+				Goalflag->h = 25;
+			   
 			}
 		}
 	}
@@ -161,9 +171,22 @@ void CSceneGame::Update() {
 		}
 
 		if (Time == 0) {
-			CText::DrawString("GAME OVER", -250, 0, 32, 32);
-			CPlayer::Gameover = 0;
+			CPlayer::Gameover = +1;
 		}
+		
+		if (CPlayer::Gameover == 1) {
+			CText::DrawString("GAME OVER", -250, 0, 32, 32);
+			CText::DrawString("Push ENTER Key", -250, -80, 20, 20);
+			
+			if (CKey::Once(VK_RETURN)) {
+				//次のシーンはゲーム
+			     mScene=ETITLE;
+				 CPlayer::Gameover = 0;
+				 Time = 60 * 45;
+				 
+			}
+		}
+		
 		
 	
 }
