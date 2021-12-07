@@ -10,7 +10,7 @@
 #include "CSlidingfloor.h"
 #include "CGoalflag.h"
 
-int Time = 60 * 45;
+int Time = 60 * 10;
 
 void CSceneGame::Init() {
 	//シーンの設定
@@ -79,50 +79,51 @@ void CSceneGame::Init() {
 			}
 		}
 	}
-}
+}void CSceneGame::Update() {
+	if (CPlayer::Gameover != 1) {
 
-void CSceneGame::Update() {
-	/*
-	配列の要素分繰り返す
-	配列名.size()
-	配列の要素数を取得する
-	*/
-	for (size_t i = 0; i < VectorRect.size(); i++) {
+
 		/*
-		配列の参照
-		配列名[添え字]
-		通常の配列同様に添え字で要素にアクセスできる
+		配列の要素分繰り返す
+		配列名.size()
+		配列の要素数を取得する
 		*/
-		//更新処理
-		VectorRect[i]->Update();
-	}
-	for (size_t i = 0; i < VectorRect.size() ; i++) {
-		//衝突処理
-		for (size_t j = i + 1; j < VectorRect.size(); j++) {
-			VectorRect[i]->Collision(VectorRect[i], VectorRect[j]);
-			VectorRect[j]->Collision(VectorRect[j], VectorRect[i]);
+		for (size_t i = 0; i < VectorRect.size(); i++) {
+			/*
+			配列の参照
+			配列名[添え字]
+			通常の配列同様に添え字で要素にアクセスできる
+			*/
+			//更新処理
+			VectorRect[i]->Update();
 		}
-	}
+		for (size_t i = 0; i < VectorRect.size(); i++) {
+			//衝突処理
+			for (size_t j = i + 1; j < VectorRect.size(); j++) {
+				VectorRect[i]->Collision(VectorRect[i], VectorRect[j]);
+				VectorRect[j]->Collision(VectorRect[j], VectorRect[i]);
+			}
+		}
 
-	//リストから削除する
-	//イテレータの生成
-	std::vector<CRectangle*>::iterator itr;
-	//イテレータを先頭
-	itr = VectorRect.begin();
-	//最後まで繰り返し
-	while (itr != VectorRect.end()) {
-		if ((*itr)->mEnabled) {
-			//次へ
-			itr++;
-		}
-		else {
-			//falseのインスタンスを削除
-			delete *itr;
-			//リストからも削除
-			itr = VectorRect.erase(itr);
+		//リストから削除する
+		//イテレータの生成
+		std::vector<CRectangle*>::iterator itr;
+		//イテレータを先頭
+		itr = VectorRect.begin();
+		//最後まで繰り返し
+		while (itr != VectorRect.end()) {
+			if ((*itr)->mEnabled) {
+				//次へ
+				itr++;
+			}
+			else {
+				//falseのインスタンスを削除
+				delete* itr;
+				//リストからも削除
+				itr = VectorRect.erase(itr);
+			}
 		}
 	}
-
 	//描画範囲変数の作成　範囲下：-300　範囲上：300　固定
 	double mLeft, mRight, mBottom = -300.0, mTop = 300.0;
 	//画面範囲左の設定
@@ -174,16 +175,18 @@ void CSceneGame::Update() {
 			CPlayer::Gameover = +1;
 		}
 		
+
 		if (CPlayer::Gameover == 1) {
 			CText::DrawString("GAME OVER", -250, 0, 32, 32);
 			CText::DrawString("Push ENTER Key", -250, -80, 20, 20);
+			CPlayer::mFx = 0;
+			
 			
 			if (CKey::Once(VK_RETURN)) {
 				//次のシーンはゲーム
 			     mScene=ETITLE;
 				 CPlayer::Gameover = 0;
 				 Time = 60 * 45;
-				 
 			}
 		}
 		

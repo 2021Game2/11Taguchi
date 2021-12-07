@@ -10,14 +10,15 @@ CPlayer* CPlayer::spInstance;
 
 int CPlayer::Gameclear = 0;
 int CPlayer::Gameover = 0;
+int CPlayer::mFx = 1;
+int CPlayer::mFy = 0;
 
 #define G	0.5f    //重力
 #define VJ0	18	 //ジャンプ力
 #define ANICNT 40		//アニメーションの切り替え
 
-CPlayer::CPlayer()
-: mFx(1.0f), mFy(0.0f)
-, FireCount(0) ,mVj(0) ,mJump(0) //0はジャンプ可能
+CPlayer::CPlayer() 
+: FireCount(0) ,mVj(0) ,mJump(0) //0はジャンプ可能
 , mAniCnt(0)
 {
 	mTag = EPLAYER;

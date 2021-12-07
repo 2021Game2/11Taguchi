@@ -5,7 +5,7 @@
 
 class CPlayer : public CRectangle {
 public:
-	int mFx, mFy;
+	static int mFx, mFy;
 	int FireCount;
 	int mJump; //ジャンプフラグ
 	float  mVj;  //ジャンプ用速度

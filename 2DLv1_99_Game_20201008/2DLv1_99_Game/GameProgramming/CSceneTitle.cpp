@@ -18,7 +18,7 @@ void CSceneTitle::Update() {
 	if (CKey::Once(VK_RETURN)) {
 		//次のシーンはゲーム
 		mScene = EGAME;
-	}
+	} 
 }
 //次のシーンの取得
 CScene::EScene CSceneTitle::GetNextScene() {
