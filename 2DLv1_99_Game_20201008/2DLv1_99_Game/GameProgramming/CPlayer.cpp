@@ -73,7 +73,9 @@ void CPlayer::Update() {
 	//‘¬“x•ªˆÚ“®
 	y += mVj;
 
-
+	if (y < -350) {
+		Gameover = 1;
+	}
 }
 
 void CPlayer::Render() {

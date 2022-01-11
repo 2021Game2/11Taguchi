@@ -10,7 +10,7 @@
 #include "CSlidingfloor.h"
 #include "CGoalflag.h"
 
-int Time = 60 * 10;
+int Time = 60 * 40;
 
 void CSceneGame::Init() {
 	//シーンの設定
@@ -161,32 +161,32 @@ void CSceneGame::Init() {
 		glLoadIdentity();    ////行列を初期化
 
 		
-
-		char buf[10];
-		sprintf(buf, "%d", Time / 60);
-		CText::DrawString(buf, 470, 250, 16, 16);
-
-		CText::DrawString("Time", 330, 250, 16, 16);
-		if (Time > 0) {
-			Time--;
-		}
-
-		if (Time == 0) {
-			CPlayer::Gameover = +1;
-		}
 		
+			char buf[10];
+			sprintf(buf, "%d", Time / 60);
+			CText::DrawString(buf, 470, 250, 16, 16);
 
+			CText::DrawString("Time", 330, 250, 16, 16);
+			if (Time > 0) {
+				Time--;
+			}
+
+			if (Time == 0) {
+				CPlayer::Gameover = +1;
+			}
+
+	
 		if (CPlayer::Gameover == 1) {
 			CText::DrawString("GAME OVER", -250, 0, 32, 32);
 			CText::DrawString("Push ENTER Key", -250, -80, 20, 20);
-			CPlayer::mFx = 0;
+			Time++;
 			
 			
 			if (CKey::Once(VK_RETURN)) {
 				//次のシーンはゲーム
 			     mScene=ETITLE;
 				 CPlayer::Gameover = 0;
-				 Time = 60 * 45;
+				 Time = 60 * 40;
 			}
 		}
 		
